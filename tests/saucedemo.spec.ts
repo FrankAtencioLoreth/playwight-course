@@ -38,6 +38,7 @@ test('purchase an item', async ({ page }) => {
     await page.getByRole('button', {name: ' Continue'}).click();
     await page.getByRole('button', {name: ' Finish'}).click();
 
+    expect(page.getByRole('heading', {name: 'Thank you for your order!'})).toBeVisible();
     const messageCheckoutComplete = await page.getByRole('heading', {name: 'Thank you for your order!'}).innerText();
     
     expect(messageCheckoutComplete).toEqual('Thank you for your order!');
