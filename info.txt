@@ -18,3 +18,6 @@ Runs test in debug mode:
 
 Auto generate test with Codegen:
     npx playwright codegen
+
+Update version:
+    npm outdated @playwright/test
