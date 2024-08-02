@@ -33,3 +33,27 @@ test('search product', async ({ page }) => {
   }
 
 });
+
+test('locators pt 1', async ({ page }) => {
+
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  await page.locator('(//input[contains(@class,\'oxd-input\')])[1]').fill('Admin');
+  await page.pause();
+
+});
+
+test('locators pt 2', async ({ page }) => {
+
+  await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  await page.getByPlaceholder('Username').fill('Admin');
+  await page.pause();
+
+});
+
+test('locators pt 3', async ({ page }) => {
+
+  await page.goto('https:www.mercadolibre.com.co');
+  await page.getByRole('link', {name: 'Mis compras', exact: true}).click();
+  await page.pause();
+
+});
