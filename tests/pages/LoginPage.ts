@@ -2,7 +2,6 @@ import { expect, Locator, Page } from "@playwright/test";
 
 export class LoginPage {
 
-    private readonly webPage: string;
     private readonly page: Page;
     private readonly usernameTextBox: Locator;
     private readonly passwordTextBox: Locator;
@@ -10,7 +9,6 @@ export class LoginPage {
     private readonly shoppingCartIcon: Locator;
 
     constructor(page: Page) {
-        this.webPage = 'https://www.saucedemo.com';
         this.page = page;
         this.usernameTextBox = page.getByRole('textbox', {name: 'Username', exact: true});
         this.passwordTextBox = page.getByRole('textbox', {name: 'Password', exact: true});
@@ -40,7 +38,7 @@ export class LoginPage {
         await expect(this.shoppingCartIcon).toBeVisible();
     }
 
-    async gotoPage() {
-        await this.page.goto(this.webPage);
+    async gotoPage(url:string) {
+        await this.page.goto(url);
     }
 }

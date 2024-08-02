@@ -55,7 +55,7 @@ test('purchase an item', async ({ page }) => {
 test('login', async ({ page }) => {
 
     const loginPage = new LoginPage(page);
-    await loginPage.gotoPage();
+    await loginPage.gotoPage('https://www.saucedemo.com');
     await loginPage.loginWithCredentials('standard_user', 'secret_sauce');
     await loginPage.checkSuccesfulLogin();
 
