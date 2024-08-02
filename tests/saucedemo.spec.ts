@@ -1,10 +1,16 @@
 import { test, expect } from "@playwright/test";
+import { LoginPage } from "./pages/LoginPage";
 
 test('purchase an item', async ({ page }) => {
     await page.goto('https://www.saucedemo.com');
-    await page.getByRole('textbox', {name: 'Username', exact: true}).fill('standard_user');
+    
+    /*await page.getByRole('textbox', {name: 'Username', exact: true}).fill('standard_user');
     await page.getByRole('textbox', {name: 'Password', exact: true}).fill('secret_sauce');
-    await page.getByRole('button', {name: 'Login', exact: true}).click();
+    await page.getByRole('button', {name: 'Login', exact: true}).click();*/
+
+    const loginPage = new LoginPage(page);
+    await loginPage.loginWithCredentials('standard_user', 'secret_sauce');
+    await loginPage.checkSuccesfulLogin();
 
     const itemsContainer = await page.locator('#inventory_container .inventory_item').all();
     const randomIndex = Math.floor(Math.random() * itemsContainer.length);
@@ -44,4 +50,13 @@ test('purchase an item', async ({ page }) => {
     expect(messageCheckoutComplete).toEqual('Thank you for your order!');
 
     await page.pause();
+});
+
+test('login', async ({ page }) => {
+
+    const loginPage = new LoginPage(page);
+    await loginPage.gotoPage();
+    await loginPage.loginWithCredentials('standard_user', 'secret_sauce');
+    await loginPage.checkSuccesfulLogin();
+
 });
