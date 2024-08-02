@@ -22,3 +22,7 @@ Auto generate test with Codegen:
 
 Update version:
     npm outdated @playwright/test
+
+Set environment:
+    set NODE_ENV=qa
+    Runs: npx playwright test tests/file
