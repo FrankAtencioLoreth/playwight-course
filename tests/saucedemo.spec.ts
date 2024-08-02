@@ -18,7 +18,7 @@ test('purchase an item', async ({ page }) => {
 
     await randomItem.getByRole('button', {name: 'Add to cart', exact: true}).click();
     await page.locator('a.shopping_cart_link').click();
-    
+
     await expect(page.getByRole('button', {name: 'Checkout'})).toBeVisible();
 
 
@@ -29,6 +29,18 @@ test('purchase an item', async ({ page }) => {
     expect(actualTitle).toEqual(expectTitle);
     expect(actualDesc).toEqual(expectDesc);
     expect(actualPrice).toEqual(expectPrice);
+
+    await page.getByRole('button', {name: 'Checkout'}).click();
+    
+    await page.getByRole('textbox', {name: 'First Name'}).fill('Frank');
+    await page.getByRole('textbox', {name: 'Last Name'}).fill('Atencio Loreth');
+    await page.getByRole('textbox', {name: 'Zip/Postal Code'}).fill('055787');
+    await page.getByRole('button', {name: ' Continue'}).click();
+    await page.getByRole('button', {name: ' Finish'}).click();
+
+    const messageCheckoutComplete = await page.getByRole('heading', {name: 'Thank you for your order!'}).innerText();
+    
+    expect(messageCheckoutComplete).toEqual('Thank you for your order!');
 
     await page.pause();
 });

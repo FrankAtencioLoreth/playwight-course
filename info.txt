@@ -1,5 +1,6 @@
 Install playwright: 
     npm init playwright@latest
+    npm Install -D @playwright/test@1.XX.XX
 
 Runs the end-to-end tests:
     npx playwright test
