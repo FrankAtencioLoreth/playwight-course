@@ -1,0 +1,20 @@
+Install playwright: 
+    npm init playwright@latest
+
+Runs the end-to-end tests:
+    npx playwright test
+
+Starts the interactive UI mode:
+    npx playwright test --ui
+
+Runs the test only on desktop chrome:
+    npx playwright test --project=chromium
+
+Runs test in a specific file:
+    npx playwright test example
+
+Runs test in debug mode:
+    npx playwright test --debug
+
+Auto generate test with Codegen:
+    npx playwright codegen
