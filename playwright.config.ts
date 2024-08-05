@@ -6,7 +6,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 import dotenv from 'dotenv';
 dotenv.config({ 
-  path: `.env.${process.env.NODE_ENV ? process.env.NODE_ENV : 'dev'}`
+  path: `.env.${process.env.NODE_ENV ? process.env.NODE_ENV : 'qa'}`
 });
 
 /**

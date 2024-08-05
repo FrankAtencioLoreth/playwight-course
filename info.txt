@@ -26,3 +26,9 @@ Update version:
 Set environment:
     set NODE_ENV=qa
     Runs: npx playwright test tests/file
+
+execute test by name on command line:
+    npx playwright test namefile.spec.ts -g "name test"
+
+execute test repeat on command line:
+    npx playwright test namefile.spec.ts -g "name test" --repeat-each 2

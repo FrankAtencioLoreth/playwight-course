@@ -11,7 +11,7 @@ test('purchase an item', async ({ page }, testInfo) => {
     const loginPage = new LoginPage(page);
     await loginPage.loginWithCredentials('standard_user', 'secret_sauce');
     await loginPage.checkSuccesfulLogin();
-    
+
     await page.screenshot({path: 'screenshots/home.png', fullPage: true});
     await testInfo.attach('login', {
         body: await page.screenshot(),
@@ -63,8 +63,9 @@ test('purchase an item', async ({ page }, testInfo) => {
 test('login', async ({ page }) => {
 
     const loginPage = new LoginPage(page);
-    await loginPage.gotoPage(process.env.URL);
+    const url = process.env.URL as string;
+    await loginPage.gotoPage(url);
     await loginPage.loginWithCredentials('standard_user', 'secret_sauce');
     await loginPage.checkSuccesfulLogin();
-
+ 
 });
