@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from "./pages/LoginPage";
 
-test('purchase an item', async ({ page }) => {
+test('purchase an item', async ({ page }, testInfo) => {
     await page.goto('https://www.saucedemo.com');
     
     /*await page.getByRole('textbox', {name: 'Username', exact: true}).fill('standard_user');
@@ -11,6 +11,12 @@ test('purchase an item', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.loginWithCredentials('standard_user', 'secret_sauce');
     await loginPage.checkSuccesfulLogin();
+    
+    await page.screenshot({path: 'screenshots/home.png', fullPage: true});
+    await testInfo.attach('login', {
+        body: await page.screenshot(),
+        contentType: 'image/png'
+    })
 
     const itemsContainer = await page.locator('#inventory_container .inventory_item').all();
     const randomIndex = Math.floor(Math.random() * itemsContainer.length);
@@ -43,13 +49,15 @@ test('purchase an item', async ({ page }) => {
     await page.getByRole('textbox', {name: 'Zip/Postal Code'}).fill('055787');
     await page.getByRole('button', {name: ' Continue'}).click();
     await page.getByRole('button', {name: ' Finish'}).click();
+    //await page.screenshot({path: 'screenshots/checkout.png', fullPage: true});
+
 
     expect(page.getByRole('heading', {name: 'Thank you for your order!'})).toBeVisible();
     const messageCheckoutComplete = await page.getByRole('heading', {name: 'Thank you for your order!'}).innerText();
     
     expect(messageCheckoutComplete).toEqual('Thank you for your order!');
 
-    await page.pause();
+    //await page.pause();
 });
 
 test('login', async ({ page }) => {
